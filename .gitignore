@@ -1,30 +1,69 @@
+# ----------------------------------------------------------------
+# Arquivo .gitignore para Projetos Laravel
+# ----------------------------------------------------------------
+
+# 1. Dependências (Gerenciadas pelo Composer e NPM)
+# Nunca suba a pasta vendor ou node_modules. Elas são instaladas
+# com 'composer install' e 'npm install' em cada máquina.
 /vendor/
-node_modules/
-npm-debug.log
-yarn-error.log
+/node_modules/
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+# 2. Arquivo de Ambiente (SEGURANÇA!)
+# Este é o arquivo MAIS IMPORTANTE para ignorar.
+# Ele contém suas senhas de banco de dados e chaves de API.
+# Cada desenvolvedor (e o servidor) deve ter seu próprio .env.
+/.env
 
-# Laravel 5 & Lumen specific
-public/storage
-public/hot
+# 3. Arquivos de Cache e Framework
+# Arquivos gerados pelo Laravel para otimização e cache.
+/bootstrap/cache/
+*.php.ser
+*.gc
 
-# Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
+# 4. Arquivos de Log
+# Logs gerados pela aplicação.
+/storage/logs/
+/storage/logs/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-storage/*.key
-.env
+# 5. Arquivos de Armazenamento (Uploads, etc.)
+# Ignora tudo dentro de /storage/app/, exceto o .gitignore de lá.
+# Isso previne que uploads de usuários sejam enviados ao Git.
+/storage/app/*
+!/storage/app/.gitignore
+/storage/app/public/*
+!/storage/app/public/.gitignore
+
+# 6. Arquivos de Sessão e Views Compiladas
+/storage/framework/cache/
+/storage/framework/sessions/
+/storage/framework/views/
+/storage/framework/testing/
+
+# 7. Symlink de Armazenamento Público
+# O atalho 'public/storage' é gerado com 'php artisan storage:link'
+/public/storage
+
+# 8. Assets Compilados (Vite / Mix)
+# Ignora os arquivos de build do frontend.
+/public/build/
+/public/hot
+
+# 9. Arquivos de IDE e Sistema Operacional
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# 10. Arquivos de Teste e Cobertura
+.phpunit.result.cache
+coverage.xml
+
+# 11. Arquivos do Laravel Homestead/Vagrant
 Homestead.yaml
 Homestead.json
-/.vagrant
-.phpunit.result.cache
-
-/public/build
-/storage/pail
-.env.backup
-.env.production
-.phpactor.json
-auth.json
+.vagrant/
